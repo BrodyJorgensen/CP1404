@@ -9,21 +9,23 @@ The price should be displayed to the nearest cent (e.g. $33.59, not $33.59182329
 """
 
 import random
-OUTPUT_FILE = "Money"
+
+OUTPUT_FILE = "text_output.txt"
 out_file = open(OUTPUT_FILE, 'w')
 
-
-MAX_INCREASE = 17.5  # 17.5%
+MAX_INCREASE = 0.175  # 17.5%
 MAX_DECREASE = 0.05  # 5%
 MIN_PRICE = 1
 MAX_PRICE = 100.0
 INITIAL_PRICE = 10.0
-day_count = 0
+day = 0
 price = INITIAL_PRICE
-print("The starting price is: ${:,.2f}".format(price))
+print("The starting price is: ${:,.2f}".format(price), file=out_file)
+
 
 while price >= MIN_PRICE and price <= MAX_PRICE:
     price_change = 0
+    day += 1
     # generate a random integer of 1 or 2
     # if it's 1, the price increases, otherwise it decreases
     if random.randint(1, 2) == 1:
@@ -35,8 +37,8 @@ while price >= MIN_PRICE and price <= MAX_PRICE:
         # between negative MAX_DECREASE and 0
         price_change = random.uniform(-MAX_DECREASE, 0)
 
-    day_count = day_count + 1
+
     price *= (1 + price_change)
-    print("${:,.2f}".format(price), file=out_file)
+    print(" On day {} the price is: ${:,.2f}".format(day, price), file=out_file)
 
 out_file.close()
