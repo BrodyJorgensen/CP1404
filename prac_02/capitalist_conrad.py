@@ -22,7 +22,6 @@ day = 0
 price = INITIAL_PRICE
 print("The starting price is: ${:,.2f}".format(price), file=out_file)
 
-
 while price >= MIN_PRICE and price <= MAX_PRICE:
     price_change = 0
     day += 1
@@ -36,7 +35,6 @@ while price >= MIN_PRICE and price <= MAX_PRICE:
         # generate a random floating-point number
         # between negative MAX_DECREASE and 0
         price_change = random.uniform(-MAX_DECREASE, 0)
-
 
     price *= (1 + price_change)
     print(" On day {} the price is: ${:,.2f}".format(day, price), file=out_file)
